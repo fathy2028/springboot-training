@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Product</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Add Product</h2>
+        <form th:action="@{/saveproduct}" th:object="${product}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="category">Select Category:</label>
+                <select class="form-control" id="category" th:field="*{category}">
+                    <option th:each="category : ${allCategories}" th:text="${category.name}" th:value="${category.id}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="hidden" th:field="*{id}" />
+                <input type="text" class="form-control" th:field="*{name}" placeholder="Enter product name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" th:field="*{price}" placeholder="Enter Price">
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="imagepath" name="imagepath" th:field="*{imagepath}">
+                <input type="file" name="file" accept="image/*" class="form-control" onchange="handleImageChange(event)">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <a href="/allcategories" class="mt-3 btn btn-secondary">Go to Home</a>
+    </div>
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function handleImageChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileName = file.name;
+                document.getElementById('imagepath').value = fileName;
+            } 
+        }
+        
+    </script>
+</body>
+</html>

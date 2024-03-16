@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List Product</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">List Products</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>image</th>
+                    <th>Category</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product: ${products}">
+                    <td th:text="${product.id}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td style="max-width: 200px;">
+                        <img th:src="@{'/images/' + ${product.imagepath}}"
+                            alt="Product Preview"
+                            style="margin-top: 10px; max-width: 30%;" />  
+                    </td>
+                    <td th:text="${product.category.name}"></td>
+                    <td><a class="btn btn-primary" th:href="@{'/editproduct/' + ${product.id}}">Edit</a></td>
+                    <td><a class="btn btn-danger" th:href="@{'/deleteproduct/' + ${product.id}}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/allcategories" class="btn btn-secondary">Go to Home</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
