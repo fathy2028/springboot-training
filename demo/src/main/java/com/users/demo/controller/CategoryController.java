@@ -72,7 +72,7 @@ return mav;
 @PostMapping("/saveproduct")
 public String saveproduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile file) {
     MultipartFile image = file;
-    String uploadDir="C:/Users/elsayed/Desktop/reg and login by spring/demo/src/main/resources/static/images";
+    String uploadDir="C:/Users/elsayed/Desktop/repospring/springboot-training/demo/src/main/resources/static/images";
     
     String fileName = StringUtils.cleanPath(image.getOriginalFilename());
     try {

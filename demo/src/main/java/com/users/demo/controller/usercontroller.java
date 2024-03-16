@@ -53,7 +53,7 @@ public class usercontroller {
        String encodedPassword = BCrypt.hashpw(u.getPassword(), BCrypt.gensalt(12));
         u.setPassword(encodedPassword);
         MultipartFile image = file;
-        String uploadDir="C:/Users/elsayed/Desktop/reg and login by spring/demo/src/main/resources/static/images";
+        String uploadDir="C:/Users/elsayed/Desktop/repospring/springboot-training/demo/src/main/resources/static/images";
         String fileName = StringUtils.cleanPath(image.getOriginalFilename());
         try {
             // Save the file to the specified directory
